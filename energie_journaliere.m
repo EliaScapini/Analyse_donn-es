@@ -1,9 +1,8 @@
-%ce script crée un graphique de la consommation en Wh d'un ménage sur une
+%cette fonction crée un graphique de la consommation en Wh d'un ménage sur une
 %journée
-clear all;
-close all;
+function Wh=energie_journaliere(filename)
 %Open the file
-fid=fopen('D:\APEAS1\data\ID01\energyBox-020_2013-05-23.csv','r');
+fid=fopen(num2str(filename),'r');
 %Lire les valeurs de puissance de la phase 2
 %   jour    phase 1     phase 2     phase 3     Wh
 donnees=textscan(fid,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*f %*f %d','Headerlines',1,'Delimiter',';');
@@ -23,7 +22,7 @@ overflow=10000;
 for i=2:length(Wh)
     if (Wh(i)<Wh(i-1))
         flowcounter=flowcounter+1
-        Wh(i:end)=Wh(i:end)+overflow;
+        Wh(i:end)=Wh(i:end)+(overflow*flowcounter);
     end
 end
 
@@ -31,6 +30,3 @@ end
 for i=1:length(Wh)
     Wh(i)=Wh(i)-startvalue;
 end
-
-%création du graphique
-plot(Wh);
