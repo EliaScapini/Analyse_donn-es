@@ -2,7 +2,7 @@
 %journée
 function Wh=energie_journaliere(filename)
 %Open the file
-fid=fopen(num2str(filename),'r');
+fid=fopen(filename,'r');
 %Lire les valeurs de puissance de la phase 2
 %   jour    phase 1     phase 2     phase 3     Wh
 donnees=textscan(fid,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*f %*f %d','Headerlines',1,'Delimiter',';');
