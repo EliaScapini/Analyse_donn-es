@@ -3,25 +3,18 @@
 %function Wh=energie_journaliere(filename)
 %Open the file
 fid=fopen('C:\Users\elias\Documents\INFO\ANALYSE DES DONNEES\energyBox-020_2013-05-23.csv','r');
-%Lire les valeurs de puissance de la phase 2
+
+%Lire les valeurs de puissance de la phase
 %   jour    phase 1     phase 2     phase 3     Wh
 donnees=textscan(fid,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*f %*f %d','Headerlines',1,'Delimiter',';');
-%correction des données : overflow (10'000) et remise à zéro du compteur en
-%début de journée
 
-tableau_temps=[1:1:23;1:1:23];
 
 %colonne Watt heure et temps
 Wh=donnees{5};
-temps=datenum(donnees{1});
-
-for k=1:size(temps,1)
-    tableau_temps(2,k)=temps(3600*k);
-end
-
+temps=str2num(datestr(datenum(donnees{1}),'HH'));
 
 %valeur de correction pour le début de journée
-startvalue=Wh(1:1);
+startvalue=Wh(1,1);
 %nombre d'overflow
 flowcounter=0;
 %hauteur d'overflow
@@ -35,16 +28,10 @@ for i=2:length(Wh)
     end
 end
 
-% %correction de l'overflow pour la mise en forme du graphique
-% for i=2:length(temps)
-%     if (temps(i)<temps(i-1))
-%         flowcounter=flowcounter+1;
-%         temps(i:end)=temps(i:end)+(overflow*flowcounter);
-%     end
-% end
-
-%mise à zéro lors du début de journée
+% mise à zéro lors du début de journée
 for i=1:length(Wh)
     Wh(i)=Wh(i)-startvalue;
 end
 
+plot(temps,Wh)
+axis([0,24,0,11000])
