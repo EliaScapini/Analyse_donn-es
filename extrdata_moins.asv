@@ -60,11 +60,10 @@ for j=1:length(liste)
     for i=p:r
         Wh(i)=Wh(i)-startvalue;
     end
-    WhDay=[WhDay;Wh(r)];
-    Day=[Day;temps(p)];
+    WhDay=[WhDay;Wh(r)]
+    Day=[Day;temps(p)]
 
 end
 
 bar(Day,WhDay)
-xlabel=('Jour')
-ylabel=('Energie [Wh]')
+xlabe
