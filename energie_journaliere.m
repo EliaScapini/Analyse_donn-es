@@ -10,8 +10,10 @@ donnees=textscan(fid,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*
 
 
 %colonne Watt heure et temps
+
 Wh=donnees{5};
-temps=str2num(datestr(datenum(donnees{1}),'HH'));
+temps=datenum(donnees{1});
+temps_ech=((temps-floor(temps(1)))*24);
 
 %valeur de correction pour le début de journée
 startvalue=Wh(1,1);
@@ -33,5 +35,10 @@ for i=1:length(Wh)
     Wh(i)=Wh(i)-startvalue;
 end
 
-plot(temps,Wh)
-axis([0,24,0,11000])
+plot(temps_ech,Wh)
+axis([0,23,0,11000])
+title('Maision ID01 Energie par jour')
+xlabel('Heures [h]')
+ylabel('Energie [Wh]')
+grid on
+grid minor
