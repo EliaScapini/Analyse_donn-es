@@ -2,7 +2,7 @@
 % journée
 % 
 % Open the file
-fid=fopen('C:\Users\elias\Documents\INFO\ANALYSE DES DONNEES\energyBox-020_2013-05-23.csv','r');
+fid=fopen('C:\Users\colin\Desktop\APEAS1\data\ID13\energyBox-021_2013-10-25.csv','r');
 
 % Lire les valeurs de puissance de la phase
 % jour    phase 1     phase 2     phase 3     Wh
@@ -16,15 +16,15 @@ Phase1=donnees{2};
 Phase2=donnees{3};
 Phase3=donnees{4};
 
-% Adjustament pour le graphique de la Phase2
-for g=1:length(Phase2)
-Phase2_gr(g)=Phase2(g)+6000;
-end
-
-% Adjustament pour le graphique de la Phase3
-for g=1:length(Phase3)
-Phase3_gr(g)=Phase3(g)+12000;
-end
+% % Adjustament pour le graphique de la Phase2
+% for g=1:length(Phase2)
+% Phase2_gr(g)=Phase2(g)+6000;
+% end
+% 
+% % Adjustament pour le graphique de la Phase3
+% for g=1:length(Phase3)
+% Phase3_gr(g)=Phase3(g)+12000;
+% end
 
 
 % elimination des val négatives Phase1
@@ -57,9 +57,9 @@ end
 % end
 
 hold on
-plot(temps_ech,Phase1)
-plot(temps_ech,Phase2_gr)
-plot(temps_ech,Phase3_gr)
+plot(temps_ech,Phase1,'g')
+plot(temps_ech,Phase2,'r')
+plot(temps_ech,Phase3,'b')
 
 
 % axis([0,23,0,12000])
