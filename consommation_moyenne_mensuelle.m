@@ -1,11 +1,9 @@
-%ce script crée un graphique de la consommation en Wh d'un ménage sur une
-%moins
-%function Wh=extrdata_moins(num_maison)
+%consommation moyenne journalière et consommation totale mensuelle
 
 %Open the file
 
 %liste=dir(['E:\APEAS1\data\ID',num2str(num_maison),'\energyBox*.csv']);
-liste=dir(['C:\Users\colin\Desktop\APEAS1\data\ID06','\energyBox*.csv']);
+liste=dir(['C:\Users\colin\Desktop\APEAS1\data\ID01','\energyBox*.csv']);
 Wh=[];
 temps=[];
 WhDay=[]
@@ -17,8 +15,8 @@ for j=1:length(liste)
     
     %save(['E:\APEAS1\data\ID01','\',cour_jour,'.csv'],'-mat');
     %donnees_moins_mat=load(['E:\APEAS1\data\ID01','\',cour_jour,'.csv'],'-mat');
-    ['C:\Users\colin\Desktop\APEAS1\data\ID06\',cour_jour]
-    fid=fopen(['C:\Users\colin\Desktop\APEAS1\data\ID06\',cour_jour],'r');
+    ['C:\Users\colin\Desktop\APEAS1\data\ID01\',cour_jour]
+    fid=fopen(['C:\Users\colin\Desktop\APEAS1\data\ID01\',cour_jour],'r');
     %Lire les valeurs de puissance de la phase 2
     %   jour    phase 1     phase 2     phase 3     Wh
     donnees_moins=textscan(fid,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*f %*f %d','Headerlines',1,'Delimiter',';');
@@ -28,7 +26,6 @@ for j=1:length(liste)
     %colonne Watt heure
     Wh=[Wh; double(donnees_moins{5})];
     
-    temps=[temps; str2num(datestr(donnees_moins{1},'dd'))];
     
     
     %
@@ -43,12 +40,12 @@ for j=1:length(liste)
     overflow=10000;
     
     %interval de correction pour l'overflow et la valeur de départ
-    p=length(Wh)-86399
+    p=length(Wh)-86398
     r=length(Wh)
     
     
     %correction de l'overflow pour la mise en forme du graphique
-    for i=p+1:r
+    for i=p+2:r
         if (Wh(i)<Wh(i-1))
             flowcounter=flowcounter+1;
             Wh(i:end)=Wh(i:end)+overflow;
@@ -61,10 +58,8 @@ for j=1:length(liste)
         Wh(i)=Wh(i)-startvalue;
     end
     WhDay=[WhDay;Wh(r)];
-    Day=[Day;temps(p)];
 
 end
 
-bar(Day,WhDay)
-xlabel=('Jour')
-ylabel=('Energie [Wh]')
+moyenne_jour= mean(WhDay)
+cons_tot_mens= sum(WhDay)
