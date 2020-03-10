@@ -2,8 +2,10 @@
 
 %Open the file
 
+%file number
+n='57'
 %liste=dir(['E:\APEAS1\data\ID',num2str(num_maison),'\energyBox*.csv']);
-liste=dir(['C:\Users\colin\Desktop\APEAS1\data\ID01','\energyBox*.csv']);
+liste=dir(['C:\Users\colin\Desktop\APEAS1\data\ID',str2num(n),'\energyBox*.csv']);
 Wh=[];
 temps=[];
 WhDay=[]
@@ -15,8 +17,8 @@ for j=1:length(liste)
     
     %save(['E:\APEAS1\data\ID01','\',cour_jour,'.csv'],'-mat');
     %donnees_moins_mat=load(['E:\APEAS1\data\ID01','\',cour_jour,'.csv'],'-mat');
-    ['C:\Users\colin\Desktop\APEAS1\data\ID01\',cour_jour]
-    fid=fopen(['C:\Users\colin\Desktop\APEAS1\data\ID01\',cour_jour],'r');
+    ['C:\Users\colin\Desktop\APEAS1\data\ID',str2num(n),'\',cour_jour]
+    fid=fopen(['C:\Users\colin\Desktop\APEAS1\data\ID',str2num(n),'\',cour_jour],'r');
     %Lire les valeurs de puissance de la phase 2
     %   jour    phase 1     phase 2     phase 3     Wh
     donnees_moins=textscan(fid,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*f %*f %d','Headerlines',1,'Delimiter',';');
