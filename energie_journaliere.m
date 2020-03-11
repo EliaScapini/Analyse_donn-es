@@ -1,8 +1,8 @@
 %cette fonction crée un graphique de la consommation en Wh d'un ménage sur une
 %journée
-%function Wh=energie_journaliere(filename)
+function energie_journaliere(file_name)
 %Open the file
-fid=fopen('C:\Users\elias\Documents\INFO\ANALYSE DES DONNEES\energyBox-020_2013-05-23.csv','r');
+fid=fopen(strcat('E:\APEAS1\data\',file_name,'.csv'),'r');
 
 %Lire les valeurs de puissance de la phase
 %   jour    phase 1     phase 2     phase 3     Wh
@@ -35,10 +35,20 @@ for i=1:length(Wh)
     Wh(i)=Wh(i)-startvalue;
 end
 
+%trouver l'energie max
+max_Wh=0;
+for w=1:length(Wh)
+    if Wh(w)>max_Wh
+        max_wh=Wh(w);
+    end
+end
+
+table_x=[0:1:23];
 plot(temps_ech,Wh)
-axis([0,23,0,10000])
-title('Maision ID01 Energie par jour')
+axis([0,23,0,max_wh])
+title(strcat('Energie par jour, Maision-',file_name(1:4),',Date:',file_name(20:end)))
 xlabel('Heures [h]')
+xticks(table_x)
 ylabel('Energie [Wh]')
 grid on
 grid minor
