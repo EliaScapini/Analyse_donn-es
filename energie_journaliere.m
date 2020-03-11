@@ -36,7 +36,7 @@ for i=1:length(Wh)
 end
 
 plot(temps_ech,Wh)
-axis([0,23,0,11000])
+axis([0,23,0,10000])
 title('Maision ID01 Energie par jour')
 xlabel('Heures [h]')
 ylabel('Energie [Wh]')

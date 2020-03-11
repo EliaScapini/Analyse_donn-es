@@ -46,8 +46,9 @@ plot(temps_ech,Phase1_ft,'g')
 plot(temps_ech,Phase2_ft,'r')
 plot(temps_ech,Phase3_ft,'b')
 
-
+table_x=[0:2:23];
 title('Puissance des Phases par jour ID13 du 25.10.2013 ')
+xticks(table_x)
 xlabel('Heures [h]')
 ylabel('Puissance [W]')
 grid on
