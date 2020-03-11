@@ -2,7 +2,7 @@
 % journée
 % 
 % Open the file
-fid=fopen('C:\Users\colin\Desktop\APEAS1\data\ID13\energyBox-021_2013-10-25.csv','r');
+fid=fopen('E:\APEAS1\data\ID13\energyBox-021_2013-10-25.csv','r');
 
 % Lire les valeurs de puissance de la phase
 % jour    phase 1     phase 2     phase 3     Wh
@@ -15,17 +15,6 @@ temps_ech=((temps-floor(temps(1)))*24);
 Phase1=donnees{2};
 Phase2=donnees{3};
 Phase3=donnees{4};
-
-% % Adjustament pour le graphique de la Phase2
-% for g=1:length(Phase2)
-% Phase2_gr(g)=Phase2(g)+6000;
-% end
-% 
-% % Adjustament pour le graphique de la Phase3
-% for g=1:length(Phase3)
-% Phase3_gr(g)=Phase3(g)+12000;
-% end
-
 
 % elimination des val négatives Phase1
 for s=1:length(Phase1)
@@ -46,27 +35,20 @@ for s=1:length(Phase3)
     end
 end
 
-    
+b = (1/100)*ones(1,100);
+Phase1_ft=filter(b,1,Phase1);
+Phase2_ft=filter(b,1,Phase2);
+Phase3_ft=filter(b,1,Phase3);
 
-% axe_y=[0:500:12000];
-% h=[0:500:6000];
-% for f=1:length(axe_y)
-%     if axe_y(f)==6000
-%         axe_y(f:end)=h(:);
-%     end
-% end
 
 hold on
-plot(temps_ech,Phase1,'g')
-plot(temps_ech,Phase2,'r')
-plot(temps_ech,Phase3,'b')
+plot(temps_ech,Phase1_ft,'g')
+plot(temps_ech,Phase2_ft,'r')
+plot(temps_ech,Phase3_ft,'b')
 
-
-% axis([0,23,0,12000])
-% set(gca,'YTick',1:25,'YTickLabel',axe_y(1:end)); 
-
-
-title('Maision ID01 Puissance des Phases par jour')
+table_x=[0:2:23];
+title('Puissance des Phases par jour ID13 du 25.10.2013 ')
+xticks(table_x)
 xlabel('Heures [h]')
 ylabel('Puissance [W]')
 grid on
