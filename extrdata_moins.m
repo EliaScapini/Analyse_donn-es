@@ -8,7 +8,7 @@ close all
 %Open the file
 
 %liste=dir(['E:\APEAS1\data\ID',num2str(num_maison),'\energyBox*.csv']);
-liste=dir(['C:\Users\colin\Desktop\APEAS1\data\ID39','\energyBox*.csv']);
+liste=dir(['C:\Users\colin\Desktop\APEAS1\data\ID50','\energyBox*.csv']);
 Wh=[];
 temps=[];
 WhDay=[]
@@ -20,8 +20,8 @@ for j=1:length(liste)
     
     %save(['E:\APEAS1\data\ID01','\',cour_jour,'.csv'],'-mat');
     %donnees_moins_mat=load(['E:\APEAS1\data\ID01','\',cour_jour,'.csv'],'-mat');
-    ['C:\Users\colin\Desktop\APEAS1\data\ID39\',cour_jour]
-    fid=fopen(['C:\Users\colin\Desktop\APEAS1\data\ID39\',cour_jour],'r');
+    ['C:\Users\colin\Desktop\APEAS1\data\ID50\',cour_jour]
+    fid=fopen(['C:\Users\colin\Desktop\APEAS1\data\ID50\',cour_jour],'r');
     %Lire les valeurs de puissance de la phase 2
     %   jour    phase 1     phase 2     phase 3     Wh
     donnees_moins=textscan(fid,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*f %*f %d','Headerlines',1,'Delimiter',';');
@@ -71,7 +71,7 @@ end
 
 bar(WhDay)
 % Create title
-title({'Consommation journalière ID39 du 03.10 au 24.10'})
+title({'Consommation journalière ID50 du 12.04 au 14.05'})
 % Create ylabel
 ylabel('Consommation [Wh]')
 % Create xlabel
