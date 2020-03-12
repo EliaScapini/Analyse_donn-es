@@ -22,6 +22,7 @@ for s=1:length(Phase1)
         Phase1(s)=0;
     end
 end
+
 % elimination des val négatives Phase2
 for s=1:length(Phase2)
     if Phase2(s)<0
@@ -60,6 +61,38 @@ end
 if max_Phase3>max_Phase2 && max_Phase3>max_Phase1
     max_Phase=max_Phase3;
 end
+
+% modification des valeurs en plus (Phase1)
+rand_val1=randi([0,max_Phase1]);
+for z=1:length(Phase1)
+    if length(Phase1)>86400
+        delete(Phase1(86401:end))
+    end
+    if length(Phase1)<86400
+        Phase1(86401:end)=rand_val1;
+    end
+end
+% modification des valeurs en plus (Phase2)
+rand_val2=randi([0,max_Phase2]);
+for z=1:length(Phase2)
+    if length(Phase2)>86400
+        delete(Phase2(86401:end))
+    end
+    if length(Phase2)<86400
+        Phase2(86401:end)=rand_val2;
+    end
+end
+% modification des valeurs en plus (Phase1)
+rand_val3=randi([0,max_Phase3]);
+for z=1:length(Phase3)
+    if length(Phase3)>86400
+        delete(Phase3(86401:end))
+    end
+    if length(Phase3)<86400
+        Phase3(86401:end)=rand_val3;
+    end
+end
+
 
 %echantillonage 
 b = (1/100)*ones(1,100);
