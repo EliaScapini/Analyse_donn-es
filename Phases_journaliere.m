@@ -113,4 +113,4 @@ xlabel('Heures [h]')
 ylabel('Puissance [W]')
 grid on
 grid minor
-%legend('Phase1','Phase','Phase3')
+legend('Phase1','Phase','Phase3')

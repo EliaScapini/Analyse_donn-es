@@ -140,3 +140,4 @@ xticks(table_x)
 ylabel('Energie [Wh]')
 grid on
 grid minor
+legend(file_name1(end-9:end),file_name2(end-9:end),'Location','northwest')
