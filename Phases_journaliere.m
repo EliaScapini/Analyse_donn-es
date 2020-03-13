@@ -36,7 +36,7 @@ for s=1:length(Phase3)
     end
 end
 
-%trouver la P max, phase 1,2,2
+% trouver la P max, phase 1,2,2
 max_Phase1=0;
 max_Phase2=0;
 max_Phase3=0;
@@ -93,18 +93,17 @@ for z=1:length(Phase3)
     end
 end
 
-
-%echantillonage 
+% echantillonage 
 b = (1/100)*ones(1,100);
 Phase1_ft=filter(b,1,Phase1);
 Phase2_ft=filter(b,1,Phase2);
 Phase3_ft=filter(b,1,Phase3);
 
-
 hold on
-plot(temps_ech,Phase1_ft,'g')
+plot(temps_ech,Phase1_ft,'b')
 plot(temps_ech,Phase2_ft,'r')
-plot(temps_ech,Phase3_ft,'b')
+plot(temps_ech,Phase3_ft,'k')
+
 
 table_x=[0:1:23];
 axis([0,23,0,max_Phase])
@@ -114,4 +113,4 @@ xlabel('Heures [h]')
 ylabel('Puissance [W]')
 grid on
 grid minor
-legend('Phase1','Phase2','Phase3')
+%legend('Phase1','Phase','Phase3')
