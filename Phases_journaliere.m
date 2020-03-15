@@ -106,11 +106,11 @@ plot(temps_ech,Phase3_ft,'k')
 
 
 table_x=[0:1:23];
-axis([0,23,0,max_Phase])
-title(strcat('Puissance des phases par jour, Maision-',file_name(1:4),',Date:',file_name(20:end)))
+xlim([0 23])
+title(strcat('Puissance des phases par jour, Maision-',file_name(1:4),',Date:',file_name(20:end)),'Fontsize',15)
 xticks(table_x)
-xlabel('Heures [h]')
-ylabel('Puissance [W]')
+xlabel('Heures [h]','Fontsize',15)
+ylabel('Puissance [W]','Fontsize',15)
 grid on
 grid minor
-legend('Phase1','Phase','Phase3')
+legend('Phase1','Phase2','Phase3','Fontsize',15)

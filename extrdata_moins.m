@@ -83,11 +83,11 @@ to= convertCharsToStrings(b)
 % Graphique
 bar(WhDay)
 % Create title
-title(strcat('Consommation journalière ID',n,' du',' ', from,' au ',' ',to))
+title(strcat('Consommation journalière ID',n,' du',' ', from,' au ',' ',to),'Fontsize',15)
 % title({'Consommation journalière ID57 du 01.02 au 07.03'})
 % Create ylabel
-ylabel('Consommation [kWh]')
+ylabel('Consommation [kWh]','Fontsize',15)
 % Create xlabel
-xlabel('Jour')
+xlabel('Jour','Fontsize',15)
 
 strcat('Consommation journalière ID',n,' du ',' ', from,' au ',' ',to)

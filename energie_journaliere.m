@@ -134,10 +134,10 @@ hold on
 plot(temps_ech1,Wh1)
 plot(temps_ech2,Wh2)
 axis([0,23,0,max_Wh])
-title(strcat('Energie par jour, Maison-',file_name1(1:nome_mais),',  Date1:',file_name1(end-9:end),',  Date2:',file_name2(end-9:end)))
-xlabel('Heures [h]')
+title(strcat('Energie par jour, Maison-',file_name1(1:nome_mais),',  Date1:',file_name1(end-9:end),',  Date2:',file_name2(end-9:end)),'Fontsize',15)
+xlabel('Heures [h]','Fontsize',15)
 xticks(table_x)
-ylabel('Energie [Wh]')
+ylabel('Energie [Wh]','Fontsize',15)
 grid on
 grid minor
-legend(file_name1(end-9:end),file_name2(end-9:end),'Location','northwest')
+legend(file_name1(end-9:end),file_name2(end-9:end),'Location','northwest','Fontsize',15)
