@@ -109,6 +109,7 @@ table_x=[0:1:23];
 xlim([0 23])
 title(strcat('Puissance des phases par jour, Maision-',file_name(1:4),',Date:',file_name(20:end)),'Fontsize',15)
 xticks(table_x)
+axis([0,23,0,2000])
 xlabel('Heures [h]','Fontsize',15)
 ylabel('Puissance [W]','Fontsize',15)
 grid on
