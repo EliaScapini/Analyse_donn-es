@@ -6,7 +6,7 @@ fid1=fopen(strcat('E:\APEAS1\data\',file_name1,'.csv'),'r');
 fid2=fopen(strcat('E:\APEAS1\data\',file_name2,'.csv'),'r');
 
 %Lire les valeurs de puissance de la phase
-%   jour    phase 1     phase 2     phase 3     Wh
+%   temps     phase 1     phase 2     phase 3     Wh
 donnees1=textscan(fid1,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*f %*f %d','Headerlines',1,'Delimiter',';');
 donnees2=textscan(fid2,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*f %*f %d','Headerlines',1,'Delimiter',';');
 
@@ -83,23 +83,16 @@ else
 end
 
 % modification des valeurs en plus (Wh1)
-rand_val1=randi([0,max_Wh]);
 for z=1:length(Wh1)
     if length(Wh1)>86400
         delete(Wh1(86401:end))
     end
-    if length(Wh1)<86400
-        Wh1(86401:end)=rand_val1;
-    end
 end
+
 % modification des valeurs en plus (Wh2)
-rand_val2=randi([0,max_Wh]);
 for z=1:length(Wh2)
     if length(Wh2)>86400
         delete(Wh2(86401:end))
-    end
-    if length(Wh2)<86400
-        Wh2(86401:end)=rand_val2;
     end
 end
 
@@ -129,6 +122,7 @@ elseif length(file_name1)<30
     nome_mais=4;
 end
 
+% graphique et options
 table_x=[0:1:23];
 hold on
 plot(temps_ech1,Wh1)

@@ -5,7 +5,7 @@ function Phases_journaliere(file_name)
 fid=fopen(strcat('E:\APEAS1\data\',file_name,'.csv'),'r');
 
 % Lire les valeurs de puissance de la phase
-% jour    phase 1     phase 2     phase 3     Wh
+% temps    phase 1     phase 2     phase 3     Wh
 donnees=textscan(fid,'%*s %s %*f %*f %*f %*f %*f %*f %d %d %d %*d %*d %*d %*f %*f %*f %d','Headerlines',1,'Delimiter',';');
 
 % colonne 3Phases et temps
@@ -63,42 +63,33 @@ if max_Phase3>max_Phase2 && max_Phase3>max_Phase1
 end
 
 % modification des valeurs en plus (Phase1)
-rand_val1=randi([0,max_Phase1]);
 for z=1:length(Phase1)
     if length(Phase1)>86400
         delete(Phase1(86401:end))
     end
-    if length(Phase1)<86400
-        Phase1(86401:end)=rand_val1;
-    end
 end
+
 % modification des valeurs en plus (Phase2)
-rand_val2=randi([0,max_Phase2]);
 for z=1:length(Phase2)
     if length(Phase2)>86400
         delete(Phase2(86401:end))
     end
-    if length(Phase2)<86400
-        Phase2(86401:end)=rand_val2;
-    end
 end
+
 % modification des valeurs en plus (Phase1)
-rand_val3=randi([0,max_Phase3]);
 for z=1:length(Phase3)
     if length(Phase3)>86400
         delete(Phase3(86401:end))
     end
-    if length(Phase3)<86400
-        Phase3(86401:end)=rand_val3;
-    end
 end
 
-% echantillonage 
+% filtrage 
 b = (1/100)*ones(1,100);
 Phase1_ft=filter(b,1,Phase1);
 Phase2_ft=filter(b,1,Phase2);
 Phase3_ft=filter(b,1,Phase3);
 
+% graphique et option graphique
 hold on
 plot(temps_ech,Phase1_ft,'b')
 plot(temps_ech,Phase2_ft,'r')
@@ -109,7 +100,7 @@ table_x=[0:1:23];
 xlim([0 23])
 title(strcat('Puissance des phases par jour, Maision-',file_name(1:4),',Date:',file_name(20:end)),'Fontsize',15)
 xticks(table_x)
-axis([0,23,0,2000])
+axis([0,23,0,max_Phase])
 xlabel('Heures [h]','Fontsize',15)
 ylabel('Puissance [W]','Fontsize',15)
 grid on
